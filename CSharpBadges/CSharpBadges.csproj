@@ -55,7 +55,9 @@
     <Compile Include="RecentBadges.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="allbadges.json" />
     <None Include="App.config" />
+    <None Include="bin\Debug\allbadges.json" />
     <None Include="bin\Debug\dawson.json" />
     <None Include="bin\Debug\dawson89.json" />
     <None Include="dawson.json" />

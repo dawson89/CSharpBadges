@@ -32,9 +32,11 @@ namespace CSharpBadges
 			string currentDirectory = Directory.GetCurrentDirectory();
 			DirectoryInfo directory = new DirectoryInfo(currentDirectory);
 
-			// var fileName = Path.Combine(directory.FullName, "dawson89.json");
-			// System.Threading.Tasks.Task<string> xfdfdf = BadgeClient.GetStringAsync("dawson89.json");
-			var fileName = Path.Combine(directory.FullName, "allBadges.json");
+			var fileName = Path.Combine(directory.FullName, "dawson89.json");
+			Task<string> xfdfdf = BadgeClient.GetStringAsync("dawson89.json");
+
+			// This feeds in the dawson89.json file and converts is to allBadges.json
+			fileName = Path.Combine(directory.FullName, "allBadges.json");
 			var badges = DeserializeBadges(fileName);
 
 			var allBadges = GetAllBadges(badges);
@@ -43,8 +45,8 @@ namespace CSharpBadges
 
 
 			SerializeBadgeToFile(allBadges, Path.Combine(directory.FullName, "allbadges.json"));
-			//	SerializeBadgeToFile(customImportBadges, Path.Combine(directory.FullName, "recentbadges.json"));
-			//	SerializeBadgeToFile(customExportBadges, Path.Combine(directory.FullName, "recentbadges.json"));
+			SerializeBadgeToFile(customImportBadges, Path.Combine(directory.FullName, "recentbadgesimport.json"));
+			SerializeBadgeToFile(customExportBadges, Path.Combine(directory.FullName, "recentbadgesexport.json"));
 
 			string yes = "Y";
 			//		string no = "N";
@@ -66,7 +68,7 @@ namespace CSharpBadges
 				{
 					var displayNumber = i + 1;
 					var badge = customImportBadges[i];
-					Console.WriteLine(displayNumber.ToString() + " ID: " + badge.Id + " Name: " + badge.Name + " Date Earned: " + badge.EarnedDate.ToShortDateString() + " Favorite: " + badge.ClassTopic);
+					Console.WriteLine(displayNumber.ToString() + " ID: " + badge.Id + " Name: " + badge.Name + " Date Earned: " + badge.EarnedDate.ToShortDateString() + " Favorite: " + badge.FavoriteInfo);
 				}
 
 				Console.Write("To add/update/delete favorite information enter the number of the line you would like to select? ");
@@ -75,8 +77,8 @@ namespace CSharpBadges
 				var indexAnswer = int.Parse(answerNo);
 				var goFind = indexAnswer - 1;
 
-				Console.Write("Badge ID Number: " + customImportBadges[goFind].Id + " Badge Name: " + customImportBadges[goFind].Name + " Favorite: " + customImportBadges[goFind].ClassTopic);
-				customImportBadges[goFind].ClassTopic = Console.ReadLine();
+				Console.Write("Badge ID Number: " + customImportBadges[goFind].Id + " Badge Name: " + customImportBadges[goFind].Name + " Favorite: " + customImportBadges[goFind].FavoriteInfo);
+				customImportBadges[goFind].FavoriteInfo = Console.ReadLine();
 				Console.WriteLine("Would like to make another change? ");
 				Answer = Console.ReadLine();
 				//if (AnswerTwo == "N")

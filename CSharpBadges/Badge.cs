@@ -26,7 +26,7 @@ namespace CSharpBadges
 		[JsonProperty(PropertyName = "earned_date")]
 		public DateTime EarnedDate { get; set; }
 
-		public string ClassTopic { get; set; }
+		public string FavoriteInfo { get; set; }
 	}
 
 }
